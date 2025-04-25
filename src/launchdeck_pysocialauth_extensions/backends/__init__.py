@@ -1,1 +1,2 @@
-from main import LaunchDeckAzureADTenantOAuth2
+from .main import LaunchDeckAzureADTenantOAuth2
+
