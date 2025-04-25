@@ -9,5 +9,9 @@ class LaunchDeckAzureADTenantOAuth2(AzureADTenantOAuth2):
     name = "launchdeck-azuread-tenant-oauth2"
 
     @property
-    def redirect_uri(self):
+    def redirect_uri_override(self):
         return self.setting("REDIRECT_URI")
+    
+    @redirect_uri_override.setter
+    def redirect_uri_override(self):
+        self.redirect_uri = self.setting("REDIRECT_URI")
