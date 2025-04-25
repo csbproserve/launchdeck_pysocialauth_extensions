@@ -1,0 +1,22 @@
+[project]
+name = "launchdeck-pysocialauth-extensions"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "CSB Dev",email = "csbdev@cspire.com"}
+]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "social-auth-core (>=4.5.6,<4.6.0)"
+]
+
+[tool.poetry]
+packages = [
+    {include = "launchdeck_pysocialauth_extensions", from = "src"}
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
