@@ -1,5 +1,5 @@
 import logging
-from social_core.backends.azuread_tenant import AzureADTenantOAuth2
+from social_core.backends.azuread_tenant import AzureADTenantOAuth2, AzureADV2TenantOAuth2
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
