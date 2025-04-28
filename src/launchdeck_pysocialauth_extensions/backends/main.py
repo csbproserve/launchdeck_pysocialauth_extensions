@@ -1,5 +1,13 @@
+import logging
 from social_core.backends.azuread_tenant import AzureADTenantOAuth2
 
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+handler = logging.StreamHandler()
+handler.setLevel(logging.DEBUG)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+handler.setFormatter(formatter)
+logger.addHandler(handler)
 
 class LaunchDeckAzureADTenantOAuth2(AzureADTenantOAuth2):
     """
@@ -14,7 +22,7 @@ class LaunchDeckAzureADTenantOAuth2(AzureADTenantOAuth2):
         self.redirect_uri = self.strategy.absolute_uri(self.redirect_uri)
     
     def request_access_token(self, *args, **kwargs):
-        print("Requesting access token with args:", args, "and kwargs:", kwargs)
+        logger.critical("Requesting access token with args:", args, "and kwargs:", kwargs)
         access_token =  super().request_access_token(*args, **kwargs)
         print("Access token received:", access_token)
         return access_token
