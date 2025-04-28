@@ -12,3 +12,13 @@ class LaunchDeckAzureADTenantOAuth2(AzureADTenantOAuth2):
         super().__init__(*args, **kwargs)
         self.redirect_uri = self.setting("REDIRECT_URI")
         self.redirect_uri = self.strategy.absolute_uri(self.redirect_uri)
+    
+    def request_access_token(self, *args, **kwargs):
+        access_token =  super().request_access_token(*args, **kwargs)
+        print("Access token received:", access_token)
+        return access_token
+    
+    def user_data(self, *args, **kwargs):
+        response = super().user_data(*args, **kwargs)
+        print("User data received:", response)
+        return response
