@@ -8,10 +8,6 @@ handler.setLevel(logging.DEBUG)
 logger.addHandler(handler)
 
 class LaunchDeckAzureADTenantOAuth2(AzureADTenantOAuth2):
-    """
-    Custom Azure AD OAuth2 backend for LaunchDeck.
-    """
-
     name = "launchdeck-azuread-tenant-oauth2"
 
     def __init__(self, *args, **kwargs):
@@ -19,19 +15,12 @@ class LaunchDeckAzureADTenantOAuth2(AzureADTenantOAuth2):
         self.redirect_uri = self.setting("REDIRECT_URI")
         self.redirect_uri = self.strategy.absolute_uri(self.redirect_uri)
     
-    def request_access_token(self, *args, **kwargs):
-        logger.critical("Requesting access token with args:", args, "and kwargs:", kwargs)
-        access_token =  super().request_access_token(*args, **kwargs)
-        logger.critical("Access token received:", access_token)
-        return access_token
-    
-    def user_data(self, *args, **kwargs):
-        response = super().user_data(*args, **kwargs)
-        logger.critical("User data received:", response)
-        return response
-    
-    def auth_complete(self, *args, **kwargs):
-        logger.critical("Completing authentication with args:", args, "and kwargs:", kwargs)
-        auth_repsonse = super().auth_complete(*args, **kwargs)
-        logger.critical("Authentication response:", auth_repsonse)
-        return auth_repsonse
+
+class LaunchDeckAzureADV2TenantOAuth2(AzureADTenantOAuth2):
+    name = "launchdeck-azuread-v2-tenant-oauth2"
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.redirect_uri = self.setting("REDIRECT_URI")
+        self.redirect_uri = self.strategy.absolute_uri(self.redirect_uri)
+ 
