@@ -16,4 +16,3 @@ class LaunchDeckAzureADV2TenantOAuth2(AzureADV2TenantOAuth2):
         super().__init__(*args, **kwargs)
         self.redirect_uri = self.setting("REDIRECT_URI")
         self.redirect_uri = self.strategy.absolute_uri(self.redirect_uri)
- 
